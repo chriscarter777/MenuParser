@@ -1,0 +1,18 @@
+<menu>
+	<item>
+		<displayName>First</displayName>
+		<path value="/Premier.aspx"/>
+	</item>
+	<item>
+		<displayName>Second</displayName>
+		<path value="/deuxieme/Deuxieme.aspx"/>
+		<subMenu>
+			<item>
+				<displayName>Third Third</displayName>
+				<path value="/Troisieme/Troisieme/troisieme.aspx"/>
+			</item>
+
+		</subMenu>
+	</item>
+
+</menu> 
