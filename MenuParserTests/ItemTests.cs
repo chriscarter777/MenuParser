@@ -32,7 +32,7 @@ namespace MenuParser
           public void ItemToStringPrintsCorrectly()
           {
                MenuItem i = new MenuItem(true,1, "Test item", new Stack<int>(new int[] { 2 }), "/test/path.aspx");
-               string expected = "        Test item, /test/path.aspx ACTIVE";
+               string expected = "\tTest item, /test/path.aspx ACTIVE";
                Assert.AreEqual(expected, i.ToString());
           }
      }

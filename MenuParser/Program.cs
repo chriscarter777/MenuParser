@@ -7,20 +7,20 @@ namespace MenuParser
 {
      public class Program
      {
-          private static string _path2menu;
+          private static string _path2xml;
           private static string _targetpath2match;
 
           public static void Main(string[] args)
           {
-               _path2menu = args[0];
+               _path2xml = args[0];
                _targetpath2match = args[1];
 
-               List<MenuItem> parsedItems = ParseItems(_path2menu);
+               List<MenuItem> parsedItems = ParseItems(_path2xml);
                List<MenuItem> markedItems = MarkActives(parsedItems, _targetpath2match);
 
-               foreach (MenuItem i in markedItems)
+               foreach (MenuItem mi in markedItems)
                {
-                    Console.WriteLine(i.ToString());
+                    Console.WriteLine(mi.ToString());
                }
                Console.WriteLine("\nPress ENTER to exit");
                Console.ReadLine();
