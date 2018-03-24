@@ -24,7 +24,7 @@ namespace MenuParser
                }
                Console.WriteLine("\nPress ENTER to exit");
                Console.ReadLine();
-          }
+          }  //Main
 
           public static List<MenuItem> ParseItems(string path2menu)
           {
