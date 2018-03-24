@@ -1,5 +1,5 @@
 # MenuParser
-An XML parser for menu items, which also tags items matching a test string--and all their ancestor nodes--as "Active".  
+An XML parser for menu items, which also tags items pointing to a specified URL--and all their ancestor nodes--as "Active".  
 <br/>
 The XML parsing logic is mostly basic, but is distinguished by maintaining a stack to track which ancestor nodes lie above in the heirarchy, and imparts that to each menu-item node created.
 <br/><br/>
