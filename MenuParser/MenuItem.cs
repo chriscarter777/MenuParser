@@ -36,7 +36,7 @@ namespace MenuParser
           public override string ToString()
           {
                StringBuilder sb = new StringBuilder();
-               sb.Append(' ', Parents.Count * 8);
+               sb.Append('\t', Parents.Count);
                sb.Append(Name + ", " + Path);
                if (Active)
                {

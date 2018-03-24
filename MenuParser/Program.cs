@@ -22,11 +22,13 @@ namespace MenuParser
                {
                     Console.WriteLine(i.ToString());
                }
+               Console.WriteLine("\nPress ENTER to exit");
                Console.ReadLine();
           }
 
           public static List<MenuItem> ParseItems(string path2menu)
           {
+               //CONSTRAINT: Within each <item>, <displayName> and <path> may be specified in either order, but must preceed <subMenu>
                List<MenuItem> items = new List<MenuItem>();
                int depth = 0;
                int id = 0;
@@ -36,45 +38,36 @@ namespace MenuParser
                {
                     while (reader.Read())
                     {
-                         if (reader.IsStartElement() && reader.Name == "item")
+                         if (reader.NodeType == XmlNodeType.Element && reader.Name == "item")
                          {
                               id++;
-                              string name = "";
-                              string path = "";
-                              reader.Read();
-                              if (reader.IsStartElement() && reader.Name == "displayName")
+                              string name = null;
+                              string path = null;
+                              while (reader.Read() && (name == null || path == null))
                               {
-                                   reader.Read();
-                                   name = reader.Value.Trim();
-                                   reader.Read();
-                                   reader.Read();
-                                   if (reader.IsStartElement() && reader.Name == "path")
+                                   if (reader.NodeType == XmlNodeType.Element && reader.Name == "displayName")
+                                   {
+                                        reader.Read();
+                                        name = reader.Value.Trim();
+                                   }
+                                   if (reader.NodeType == XmlNodeType.Element && reader.Name == "path")
                                    {
                                         path = reader["value"];
                                    }
-
-                              }
-                              else if (reader.Name == "path")
-                              {
-                                   path = reader["value"];
-                                   reader.Read();
-                                   reader.Read();
-                                   name = reader.Value.Trim();
-                                   reader.Read();
                               }
                               items.Add(new MenuItem(false, id, name, parents, path));
                          }
-                         if (reader.IsStartElement() && reader.Name == "subMenu")
+                         if (reader.NodeType == XmlNodeType.Element && reader.Name == "subMenu")
                          {
                               depth++;
                               parents.Push(id);
                          }
-                         if (!reader.IsStartElement() && reader.Name == "subMenu")
+                         if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "subMenu")
                          {
                               depth--;
                               parents.Pop();
                          }
-                         if (!reader.IsStartElement() && reader.Name == "menu")
+                         if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "menu")
                          {
                               break;
                          }

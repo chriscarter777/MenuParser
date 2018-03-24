@@ -13,7 +13,7 @@
 			</item>
 			<item>
 				<displayName>Open Quotes</displayName>
-				<path value="/Requests/OpenQuotes.aspx"/>
+				<path value="/Requests/OpenQuotes.aspx"/>				
 			</item>
 			<item superOverride="true">
 				<displayName>Scheduled Trips</displayName>
