@@ -27,7 +27,7 @@ namespace MenuParser
                }
                _path2xml = args[0];
                _targetpath2match = args[1];
-          }
+          }  //SetParameters
 
           public static List<MenuItem> ParseItems(string path2menu)
           {
@@ -110,7 +110,7 @@ namespace MenuParser
                //for debugging:
                //Console.WriteLine("\nPress ENTER to exit");
                //Console.ReadLine();
-          }
+          }  //PrintResults
 
      }  //class
 }  //namespace
