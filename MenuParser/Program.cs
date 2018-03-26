@@ -12,21 +12,21 @@ namespace MenuParser
 
           public static void Main(string[] args)
           {
-               SetParameters(args);
+               SetParameters(args, out  _path2xml, out  _targetpath2match);
                List<MenuItem> parsedItems = ParseItems(_path2xml);
                List<MenuItem> markedItems = MarkActives(parsedItems, _targetpath2match);
                PrintResults(markedItems);
           }  //Main
 
-          public static void SetParameters(string[] args)
+          public static void SetParameters(string[] args, out string path2xml, out string targetpath2match)
           {
                if (args.Length != 2)
                {
                     Console.WriteLine("usage: menuparser.exe <path to xml file> <active target url>");
-                    Environment.Exit(0);
+                    Environment.Exit(1);
                }
-               _path2xml = args[0];
-               _targetpath2match = args[1];
+               path2xml = args[0];
+               targetpath2match = args[1];
           }  //SetParameters
 
           public static List<MenuItem> ParseItems(string path2menu)
@@ -90,7 +90,7 @@ namespace MenuParser
           public static List<MenuItem> MarkActives(List<MenuItem> inputItems, string matchpath)
           {
                List<MenuItem> markedItems = new List<MenuItem>(inputItems);
-               foreach (MenuItem match in markedItems.Where(x => x.Path == matchpath))
+               foreach (MenuItem match in markedItems.Where(x => x.Path.Trim().ToLower() == matchpath.Trim().ToLower()))
                {
                     match.Activate();
                     foreach (int id in match.Parents)

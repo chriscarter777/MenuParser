@@ -8,6 +8,16 @@ namespace MenuParser
      public class MainTests
      {
           [TestMethod]
+          public void SetParametersAccepts2Parameters()
+          {
+               string _p = null;
+               string _t = null;
+               Program.SetParameters(new string[] { "one", "two" }, out  _p, out  _t);
+               Assert.IsNotNull(_p);
+               Assert.IsNotNull(_t);
+          }  //SetParametersAccepts2Parameters
+
+          [TestMethod]
           public void ParseItemsIdentifiesFirstItem()
           {
                string expectedName = "First";
